@@ -1,0 +1,16 @@
+//Parte 2
+
+//Vista lógica 4
+//Cuales son los 30 buses que mas pasajeros transportaron
+
+Create View Buses
+
+AS
+
+SELECT codigo_transaccion, bus, count(codigo_transaccion)
+FROM MIBUS.dbo.transacciones
+where codigo_transaccion = 19    //pasajeros que subieron
+GROUP BY codigo_transaccion, bus
+ORDER BY 3 desc limit 30
+
+

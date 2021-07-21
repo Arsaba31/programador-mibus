@@ -1,0 +1,12 @@
+//Parte 1
+
+//Vista lógica
+
+Create View Distancias
+
+AS
+
+SELECT RT_ID, SN_B, STOP_CD_B, SN_E, STOP_CD_E, DIST, LMT_SPD
+FROM MIBUS.dbo.Patter_Detail
+WHERE STOP_CD_B IS NOT NULL
+OR    STOP_CD_E IS NOT NULL

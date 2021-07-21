@@ -1,0 +1,14 @@
+//Parte 2
+
+//Vista lógica 5
+//Cual fue el promedio de ingresos por hora
+Create View Ingresos
+
+AS
+
+SELECT AVG(tarifa_monto) as ingreso, datepart(hour, fecha_transaccion) as hora
+FROM MIBUS.dbo.transacciones
+GROUP BY datepart(hour, fecha_transaccion)
+
+
+

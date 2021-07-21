@@ -1,0 +1,15 @@
+//Parte 2
+
+//Vista lógica 6
+//Cuales buses fueron los que mas ingresos generaron
+Create View Ingresos
+
+AS
+
+SELECT bus, sum(tarifa_monto)
+FROM MIBUS.dbo.transacciones
+GROUP BY bus
+ORDER BY 2 desc
+
+
+

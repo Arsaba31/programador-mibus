@@ -1,0 +1,77 @@
+
+
+
+Dim sCon as string  = "Provider=SQLNCLI11;Server=yourServerName\theInstanceOfSqlServerName;Database=yourDataBaseName;Trusted_Connection=yes;"
+
+--create connection
+Set oCon = New ADODB.Connection
+With oCon
+    .ConnectionString = sCon
+    .Open
+End With
+--create command--
+dim sql as string = ""
+  
+sql = " USE [MiBUS] "
+sql = sql & " GO "
+sql = sql & " IF OBJECT_ID('pattern_detail') IS NOT NULL "
+sql = sql & "    DROP TABLE pattern_detail "
+sql = sql & " go "
+sql = sql & " IF OBJECT_ID('transacciones') IS NOT NULL "
+sql = sql & " DROP TABLE transacciones "
+sql = sql & " --CREATE TABLES-- "
+sql = sql & "  GO "
+sql = sql & " CREATE TABLE [dbo].[pattern_detail]( "
+sql = sql & " [RT_ID] [nvarchar](50) NOT NULL, "
+sql = sql & " [SN] [nvarchar](50) NOT NULL, "
+sql = sql & " [STOP_CD] [nvarchar](50) NOT NULL, "
+sql = sql & " [PATTN_DETAIL_ID] [nvarchar](50) NOT NULL, "
+sql = sql & " [IS_ACTIVE] [nvarchar](50) NOT NULL, "
+sql = sql & " [LMT_SPD] [int] NOT NULL, "
+sql = sql & " [DIST] [nvarchar](50) NOT NULL, "
+sql = sql & " [TOPOLOGY] [nvarchar](50) NOT NULL "
+sql = sql & " ) ON [PRIMARY] "
+sql = sql & " GO "
+sql = sql & " CREATE TABLE [dbo].[transacciones]( "
+sql = sql & " [Fecha_Transaccion] [datetime2](7) NOT NULL, "
+sql = sql & " [Bus] [int] NOT NULL, "
+sql = sql & " [Validador] [int] NOT NULL, "
+sql = sql & " [Tarjeta] [int] NOT NULL, "
+sql = sql & " [Fecha_RegistroCle] [nvarchar](50) NOT NULL, "
+sql = sql & " [Tarifa_Monto] [int] NOT NULL, "
+sql = sql & " [C_Tipo_Transaccion] [nvarchar](50) NOT NULL, "
+sql = sql & " [Codigo_Transaccion] [int] NOT NULL, "
+sql = sql & " [Fecha_Contabilizacion] [nvarchar](50) NOT NULL "
+sql = sql & " ) ON [PRIMARY] "
+sql = sql & " GO "
+sql = sql & " ---cargar datos --- "
+sql = sql & " BULK "
+sql = sql & " INSERT pattern_detail "
+sql = sql & " FROM 'c:\TEST\pattern_detail.csv' "
+sql = sql & " WITH "
+sql = sql & " ( "
+sql = sql & " FORMAT = 'CSV', "
+sql = sql & " firstrow = 2, "
+sql = sql & " FIELDTERMINATOR = ',', "
+sql = sql & " ROWTERMINATOR = '\n' "
+sql = sql & " ) "
+sql = sql & "  "
+sql = sql & " BULK "
+sql = sql & " INSERT transacciones "
+sql = sql & " FROM 'c:\TEST\transacciones.csv' "
+sql = sql & " WITH "
+sql = sql & " ( "
+sql = sql & " FORMAT = 'CSV', "
+sql = sql & " firstrow = 2, "
+sql = sql & " FIELDTERMINATOR = ',', "
+sql = sql & " ROWTERMINATOR = '\n' "
+sql = sql & " ) "
+  
+
+Set oCom = New ADODB.Command
+With oCom
+    Set .ActiveConnection = oCon
+    .CommandText = sql 
+    .Execute
+End With
+
