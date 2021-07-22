@@ -11,6 +11,9 @@ SELECT Datepart(hour, fecha_transaccion) as hora,
        count(Bus) as buses
 FROM MIBUS.dbo.transacciones
 GROUP BY Datepart(hour, fecha_transaccion)
-ORDER BY Datepart(hour, fecha_transaccion)
+
+
+
+
 
 

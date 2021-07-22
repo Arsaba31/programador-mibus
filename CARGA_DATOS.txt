@@ -1,4 +1,4 @@
-
+--
 
 
 Dim sCon as string  = "Provider=SQLNCLI11;Server=yourServerName\theInstanceOfSqlServerName;Database=yourDataBaseName;Trusted_Connection=yes;"

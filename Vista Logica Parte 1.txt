@@ -6,7 +6,11 @@ Create View Distancias
 
 AS
 
-SELECT RT_ID, SN_B, STOP_CD_B, SN_E, STOP_CD_E, DIST, LMT_SPD
-FROM MIBUS.dbo.Patter_Detail
-WHERE STOP_CD_B IS NOT NULL
-AND   STOP_CD_E IS NOT NULL
+SELECT RT_ID, SN as  SN_B, STOP_CD as STOP_CD_B,   DIST, LMT_SPD
+FROM MIBUS.dbo.pattern_detail
+WHERE STOP_CD IS NOT NULL
+ 
+
+//El Archivo Pattern_detail solo tiene un campo SN y un campo STOP_CD
+//Por lo tanto, para la vista lógica no se puede incluir el campo
+//SN_E Y el campo STOP_CD_E

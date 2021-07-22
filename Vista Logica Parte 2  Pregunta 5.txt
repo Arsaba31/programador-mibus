@@ -2,7 +2,8 @@
 
 //Vista lógica 5
 //Cual fue el promedio de ingresos por hora
-Create View Ingresos
+
+Create View IngresosPromedio
 
 AS
 

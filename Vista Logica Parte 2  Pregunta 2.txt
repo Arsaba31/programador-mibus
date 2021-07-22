@@ -11,6 +11,6 @@ SELECT Codigo_Transaccion as Pasajero, Datepart(hour, fecha_transaccion) as hora
        count(Codigo_Transaccion) as cantidad
 FROM MIBUS.dbo.transacciones
 GROUP BY Codigo_transaccion, Datepart(hour, fecha_transaccion)
-ORDER BY Codigo_transaccion, Datepart(hour, fecha_transaccion)
+
 
 
