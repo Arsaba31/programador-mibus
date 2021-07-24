@@ -11,7 +11,11 @@ AS
 SELECT bus, sum(tarifa_monto) as ingreso
 FROM MIBUS.dbo.transacciones
 GROUP BY bus
-ORDER BY 2 DESC
+
+//------------
+
+select bus,ingreso from ingresosmaximos
+order by 2 desc
 
 
 

@@ -3,12 +3,11 @@
 //Vista lógica 7
 //Cuales fueron los ingresos durante el dia en intervalos de 15 minutos
 
-
 create View QuinceMinutos
 
 AS
 
-SELECT sum(tarifa_monto) as ingreso,
+SELECT sum(tarifa_monto) as ingreso, datepart(hour, fecha_transaccion) as hora,
 case
 when datepart(minute, fecha_transaccion) >= 0 and datepart(minute, fecha_transaccion) <= 15 then 'Q1'
 when datepart(minute, fecha_transaccion) > 15 and datepart(minute, fecha_transaccion) <= 30 then 'Q2'
@@ -16,12 +15,14 @@ when datepart(minute, fecha_transaccion) > 30 and datepart(minute, fecha_transac
 when datepart(minute, fecha_transaccion) > 45 and datepart(minute, fecha_transaccion) <= 59 then 'Q4'
 end as intervalo
 FROM MIBUS.dbo.transacciones
-GROUP BY case
+GROUP BY datepart(hour, fecha_transaccion), case
 when datepart(minute, fecha_transaccion) >= 0 and datepart(minute, fecha_transaccion) <= 15 then 'Q1'
 when datepart(minute, fecha_transaccion) > 15 and datepart(minute, fecha_transaccion) <= 30 then 'Q2'
 when datepart(minute, fecha_transaccion) > 30 and datepart(minute, fecha_transaccion) <= 45 then 'Q3'
 when datepart(minute, fecha_transaccion) > 45 and datepart(minute, fecha_transaccion) <= 59 then 'Q4'
 end
 
+//------------
 
-
+SELECT * FROM QUINCEMINUTOS
+ORDER BY 2, 3

@@ -12,4 +12,7 @@ FROM MIBUS.dbo.transacciones
 GROUP BY datepart(hour, fecha_transaccion)
 
 
+//-------
 
+SELECT * FROM IngresosPromedio
+order by 2

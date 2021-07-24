@@ -7,10 +7,16 @@ Create View Pasajeros
 
 AS
 
-SELECT Codigo_Transaccion as Pasajero, Datepart(hour, fecha_transaccion) as hora,
-       count(Codigo_Transaccion) as cantidad
-FROM MIBUS.dbo.transacciones
-GROUP BY Codigo_transaccion, Datepart(hour, fecha_transaccion)
+select Datepart(hour, fecha_transaccion) as hora, tarjeta as tarjeta,
+       count (tarjeta) as cantidad 
+from mibus.dbo.TRANSACCIONES
+group by tarjeta, Datepart(hour, fecha_transaccion)
+
+
+//--
+
+select * from pasajeros
+order by 1, 2
 
 
 

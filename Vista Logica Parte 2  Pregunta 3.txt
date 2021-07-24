@@ -7,10 +7,17 @@ Create View Buses
 
 AS
 
-SELECT Datepart(hour, fecha_transaccion) as hora,
-       count(Bus) as buses
-FROM MIBUS.dbo.transacciones
-GROUP BY Datepart(hour, fecha_transaccion)
+select distinct Datepart(hour, fecha_transaccion) as hora, bus
+from mibus.dbo.transacciones
+group by Datepart(hour, fecha_transaccion), bus
+
+
+//---
+
+select hora, count(bus) as cantidad
+from buses
+group by hora
+order by 1,2
 
 
 

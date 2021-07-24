@@ -11,5 +11,10 @@ SELECT top 30 codigo_transaccion, bus, count(codigo_transaccion) as pasajeros
 FROM MIBUS.dbo.transacciones
 where codigo_transaccion = 19    --pasajeros que subieron
 GROUP BY codigo_transaccion, bus
+ORDER BY 3 DESC
 
+
+//----
+
+SELECT * FROM BUSESMAXIMO
 
